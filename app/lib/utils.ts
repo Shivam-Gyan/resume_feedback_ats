@@ -19,3 +19,9 @@ export function formatSize(bytes: number): string {
 
     return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + ' ' + sizes[i];
 }
+
+
+export function generate(){
+
+    return crypto.randomUUID();
+}
