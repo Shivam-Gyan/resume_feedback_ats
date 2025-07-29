@@ -82,8 +82,7 @@ const upload = () => {
 
         console.log({ data, feedback });
 
-
-
+        navigate(`/resume/${uuid}`);
 
     }
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
