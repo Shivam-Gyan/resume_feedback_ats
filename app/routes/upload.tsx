@@ -7,6 +7,7 @@ import { convertPdfToImage } from '~/lib/pdf2img';
 import { usePuterStore } from '~/lib/puter';
 import { generate } from '~/lib/utils';
 import { prepareInstructions } from '../../constants';
+import Footer from '~/components/Footer';
 
 const upload = () => {
 
@@ -80,7 +81,7 @@ const upload = () => {
 
         setStatusText('Analysis completed, redirecting ...');
 
-        console.log({ data, feedback });
+        // console.log({ data, feedback });
 
         navigate(`/resume/${uuid}`);
 
@@ -101,64 +102,69 @@ const upload = () => {
         if (!file) {
             return;
         }
-        console.log({ companyName, jobTitle, jobDescription, file });
-
+        // console.log({ companyName, jobTitle, jobDescription, file });
         await handleAnalyse({ companyName, jobTitle, jobDescription, file });
     }
 
     return (
-        <main className="bg-[url('/images/bg-main.svg')] bg-cover bg-center bg-no-repeat">
-            <Navbar />
-            <section className="main-section">
-                <div className='page-heading py-16'>
-                    <h1>Smart feedback for your dream job</h1>
-                    {
-                        isProcessing ? (
-                            <>
-                                <h2>{statusText}</h2>
-                                <img src="/images/resume-scan.gif" alt="Processing" />
-                            </>
-                        ) : (
-                            <>
-                                <h2>Drop your resume for an ATS score and improvement tips</h2>
-                            </>
-                        )
-                    }
+        <div className='relative min-h-screen'>
+            <main className="bg-[url('/images/bg-main.svg')] bg-cover bg-center bg-no-repeat">
+                <Navbar />
+                <section className="main-section">
+                    <div className='page-heading py-16'>
+                        <h1>Smart feedback for your dream job</h1>
+                        {
+                            isProcessing ? (
+                                <>
+                                    <h2>{statusText}</h2>
+                                    <img src="/images/resume-scan.gif" alt="Processing" className='size-100 -mt-10' />
+                                </>
+                            ) : (
+                                <>
+                                    <h2>Drop your resume for an ATS score and improvement tips</h2>
+                                </>
+                            )
+                        }
 
-                    {
-                        !isProcessing && (
-                            <form id='upload-form' onSubmit={handleSubmit} className='flex flex-col gap-4 mt-8'>
+                        {
+                            !isProcessing && (
+                                <form id='upload-form' onSubmit={handleSubmit} className='flex flex-col gap-4 mt-8'>
 
-                                <div className='form-div'>
-                                    <label htmlFor="company-name">Company Name</label>
-                                    <input type="text" id="company-name" placeholder='Company Name' name="company-name" />
-                                </div>
+                                    <div className='form-div'>
+                                        <label htmlFor="company-name">Company Name</label>
+                                        <input type="text" id="company-name" placeholder='Company Name' name="company-name" />
+                                    </div>
 
-                                <div className='form-div'>
-                                    <label htmlFor="job-title">Job Title</label>
-                                    <input type="text" id="job-title" placeholder='Job Title' name="job-title" />
-                                </div>
+                                    <div className='form-div'>
+                                        <label htmlFor="job-title">Job Title</label>
+                                        <input type="text" id="job-title" placeholder='Job Title' name="job-title" />
+                                    </div>
 
-                                <div className='form-div'>
-                                    <label htmlFor="job-description">Job Description</label>
-                                    <textarea rows={5} id="job-description" placeholder='Job Description' name="job-description" />
-                                </div>
+                                    <div className='form-div'>
+                                        <label htmlFor="job-description">Job Description</label>
+                                        <textarea rows={5} id="job-description" placeholder='Job Description' name="job-description" />
+                                    </div>
 
-                                <div className='form-div'>
-                                    <label htmlFor="uploader">Upload Resume</label>
-                                    <FileUploader onFileSelect={handleFileSelect} />
-                                </div>
+                                    <div className='form-div'>
+                                        <label htmlFor="uploader">Upload Resume</label>
+                                        <FileUploader onFileSelect={handleFileSelect} />
+                                    </div>
 
-                                <button className='primary-button' type='submit'>
-                                    Analyse Resume
-                                </button>
+                                    <button className='primary-button' type='submit'>
+                                        Analyse Resume
+                                    </button>
 
-                            </form>
-                        )
-                    }
-                </div>
-            </section>
-        </main>
+                                </form>
+                            )
+                        }
+                    </div>
+                </section>
+            </main>
+
+            <div className="absolute bottom-0 w-full">
+                <Footer />
+            </div>
+        </div>
     )
 }
 

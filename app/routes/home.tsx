@@ -4,6 +4,7 @@ import ResumeCard from "~/components/Resume.card";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { usePuterStore } from "~/lib/puter";
+import Footer from "~/components/Footer";
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -35,7 +36,7 @@ export default function Home() {
       const parsedResumes = storedResumes?.map(resume => (
         JSON.parse(resume.value) as Resume
       ))
-      console.log({ parsedResumes });
+      // console.log({ parsedResumes });
       if (!parsedResumes) {
         setLoadingResumes(false);
         return;
@@ -49,6 +50,7 @@ export default function Home() {
 
 
   return (
+    
     <main className="bg-[url('/images/bg-main.svg')] bg-cover bg-center bg-no-repeat">
       <Navbar />
       <section className="main-section">
@@ -92,7 +94,7 @@ export default function Home() {
         }
       </section>
 
-
+        <Footer />
     </main>
   );
 }

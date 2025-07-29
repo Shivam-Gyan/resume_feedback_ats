@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router'
 import ATS from '~/components/ATS';
 import Details from '~/components/Details';
+import Footer from '~/components/Footer';
 import Summary from '~/components/summary';
 import { usePuterStore } from '~/lib/puter';
 
@@ -49,7 +50,7 @@ const resume = () => {
             setImageUrl(imageUrl);
             setFeedback(data.feedback || '');
 
-            console.log({ resumeUrl, imageUrl, feedback: data.feedback });
+            // console.log({ resumeUrl, imageUrl, feedback: data.feedback });
         }
         fetchResume();
     }, [id])
@@ -96,6 +97,7 @@ const resume = () => {
                     }
                 </section>
             </div>
+            <Footer />
         </main>
     )
 }

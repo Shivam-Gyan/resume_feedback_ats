@@ -23,7 +23,7 @@ const ResumeCard = ({ resume }: { resume: Resume }) => {
         loadResume();
     }, [resume.imagePath])
     return (
-        <Link to={`/resumes/${resume.id}`} className='resume-card animate-in fade-in duration-1000'>
+        <Link to={`/resume/${resume.id}`} className='resume-card animate-in fade-in duration-1000'>
 
             {/* resume header */}
             <div className='resume-card-header'>
@@ -39,7 +39,7 @@ const ResumeCard = ({ resume }: { resume: Resume }) => {
                     )}
                 </div>
 
-                <div className='flex-shrink-0 '>
+                <div className='flex-shrink-1 '>
                     <ScoreCircle score={resume.feedback.overallScore} />
                 </div>
             </div>
